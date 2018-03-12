@@ -21,7 +21,17 @@
         </selectKey>
         INSERT INTO USER (username, password, gender, birthday,email, province, city)
         value(#{username},#{password},#{gender},#{birthday,jdbcType=DATE},
-    		#{email},#{province},#{city})
+        #{email},#{province},#{city})
     </insert>
+
+    <!-- 删除用户 -->
+    <delete id="deleteUser" parameterType="java.lang.Integer">
+        delete from user where id=#{id}
+    </delete>
+
+    <!-- 修改用户 -->
+    <update id="updateUserName" parameterType="com.ikook.mybatis.po.User">
+        update user set username=#{username} where id=#{id}
+    </update>
 
 </mapper>

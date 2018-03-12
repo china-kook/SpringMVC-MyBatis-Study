@@ -65,4 +65,28 @@ public class MyBatisTest {
         sqlSession.close();
     }
 
+    @Test
+    public void TestDelete() throws Exception {
+        SqlSession sqlSession = dataConnention.getSqlSession();
+
+        sqlSession.delete("test.deleteUser", 7);
+        sqlSession.commit();
+
+        sqlSession.close();
+    }
+
+    @Test
+    public void TestUpdate() throws Exception {
+        SqlSession sqlSession = dataConnention.getSqlSession();
+
+        User user = new User();
+        user.setId(4);
+        user.setUsername("孙丽");
+
+        sqlSession.update("test.updateUserName", user);
+        sqlSession.commit();
+
+        sqlSession.close();
+    }
+
 }

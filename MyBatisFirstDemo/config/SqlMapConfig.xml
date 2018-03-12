@@ -10,6 +10,9 @@
         <setting name="logImpl" value="LOG4J"/>
     </settings>
 
+    <!-- 自定义的对象工厂 -->
+    <objectFactory type="com.ikook.mybatis.test.CartObjectFactory"/>
+
     <!-- 配置环境信息 -->
     <environments default="development">
         <!--每一个单独的 environment 代表一个单独的数据库配置环境 -->

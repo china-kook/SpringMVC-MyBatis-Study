@@ -8,4 +8,10 @@
     <select id="findUserById" parameterType="int" resultType="com.ikook.mybatis.po.User">
         SELECT * FROM USER WHERE id=#{id}
     </select>
+
+
+    <select id="findUserByUsername" parameterType="java.lang.String" resultType="com.ikook.mybatis.po.User">
+        SELECT * FROM USER WHERE username LIKE '%${value}%'
+    </select>
+
 </mapper>

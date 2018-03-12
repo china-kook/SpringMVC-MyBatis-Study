@@ -13,6 +13,13 @@
     <!-- 自定义的对象工厂 -->
     <objectFactory type="com.ikook.mybatis.test.CartObjectFactory"/>
 
+    <!-- 插件 -->
+    <plugins>
+        <plugin interceptor="com.ikook.mybatis.test.QueryPlugin">
+            <property name="someProperty" value="100"/>
+        </plugin>
+    </plugins>
+
     <!-- 配置环境信息 -->
     <environments default="development">
         <!--每一个单独的 environment 代表一个单独的数据库配置环境 -->
@@ -22,7 +29,8 @@
             <!-- 数据库连接池 -->
             <dataSource type="POOLED">
                 <property name="driver" value="org.gjt.mm.mysql.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/mybatis_test?characterEncoding=utf-8"/>
+                <property name="url"
+                          value="jdbc:mysql://localhost:3306/mybatis_test?characterEncoding=utf-8"/>
                 <property name="username" value="root"/>
                 <property name="password" value="123456"/>
             </dataSource>

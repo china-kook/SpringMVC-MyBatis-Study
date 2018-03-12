@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class MyBatisTest {
@@ -37,6 +39,29 @@ public class MyBatisTest {
             System.out.println(u);
         }
 
+        sqlSession.close();
+    }
+
+    @Test
+    public void TestInsert() throws Exception {
+
+        SqlSession sqlSession = dataConnention.getSqlSession();
+
+        User user = new User();
+        user.setUsername("孙佳佳");
+        user.setGender("男");
+        user.setPassword("5555");
+        user.setEmail("5555@126.com");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        long date = sdf.parse("1991-02-16").getTime();
+        user.setBirthday(new Date(date));
+        user.setProvince("湖北省");
+        user.setCity("武汉市");
+
+        sqlSession.insert("test.insertUser", user);
+        sqlSession.commit();
+
+        System.out.println("用户'孙佳佳'的 ID 为：" + user.getId()); // 获取新增用户在数据表中的 ID
         sqlSession.close();
     }
 

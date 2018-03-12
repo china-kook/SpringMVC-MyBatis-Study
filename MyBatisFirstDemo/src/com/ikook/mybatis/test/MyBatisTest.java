@@ -2,6 +2,8 @@ package com.ikook.mybatis.test;
 
 import com.ikook.mybatis.datasource.DataConnention;
 import com.ikook.mybatis.po.User;
+import com.ikook.mybatis.po.UserInstance;
+import com.ikook.mybatis.po.UserQueryInfo;
 
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
@@ -86,6 +88,31 @@ public class MyBatisTest {
         sqlSession.update("test.updateUserName", user);
         sqlSession.commit();
 
+        sqlSession.close();
+    }
+
+    //用户信息综合查询
+    @Test
+    public void testFindUserList() throws Exception {
+
+        SqlSession sqlSession = dataConnention.getSqlSession();
+
+        // 创建包装对象，设置查询条件
+        UserQueryInfo userQueryInfo = new UserQueryInfo();
+
+        UserInstance userInstance = new UserInstance();
+
+        userInstance.setGender("男");
+        userInstance.setUsername("张三");
+        userQueryInfo.setUserInstance(userInstance);
+
+        //调用 userMapper 的方法
+        List<UserInstance> userList = sqlSession.selectList("test.findUserList", userQueryInfo);
+
+        for (int i = 0; i < userList.size(); i++) {
+            UserInstance user = (UserInstance) userList.get(i);
+            System.out.println(user.getId() + ":" + user.getUsername());
+        }
         sqlSession.close();
     }
 

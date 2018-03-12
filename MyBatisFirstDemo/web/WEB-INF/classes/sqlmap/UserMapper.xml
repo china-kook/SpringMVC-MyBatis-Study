@@ -34,4 +34,9 @@
         update user set username=#{username} where id=#{id}
     </update>
 
+    <select id="findUserList" parameterType="com.ikook.mybatis.po.UserQueryInfo"
+            resultType="com.ikook.mybatis.po.UserInstance">
+        select * from user where user.gender=#{userInstance.gender} and user.username like '%${userInstance.username}%'
+    </select>
+
 </mapper>

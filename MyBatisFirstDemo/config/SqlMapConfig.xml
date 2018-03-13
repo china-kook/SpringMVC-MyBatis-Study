@@ -8,6 +8,10 @@
     <!-- 放置设置信息 -->
     <settings>
         <setting name="logImpl" value="LOG4J"/>
+
+        <!-- 开启二级缓存 -->
+        <setting name="cacheEnabled" value="true"/>
+
         <!-- 打开延迟加载开关 -->
         <setting name="lazyLoadingEnabled" value="true"/>
         <!-- 将积极加载改为消极加载（按需加载）-->

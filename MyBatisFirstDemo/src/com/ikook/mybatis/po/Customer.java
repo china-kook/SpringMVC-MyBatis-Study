@@ -1,8 +1,9 @@
 package com.ikook.mybatis.po;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Customer {
+public class Customer implements Serializable {
 
     private int cus_id;
     private String username;

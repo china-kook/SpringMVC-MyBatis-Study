@@ -316,4 +316,71 @@ public class MyBatisTest {
         sqlSession.close();
     }
 
+    /**
+     * 验证二级缓存的存在
+     * @throws Exception
+     */
+    @Test
+    public void testFindCustomerOnMapper2() throws Exception {
+
+        SqlSession sqlSession = dataConnention.getSqlSession();
+
+        //获取Mapper代理
+        CustomerMapper customerMapper1 = sqlSession.getMapper(CustomerMapper.class);
+
+        //执行Mapper代理对象的查询方法
+        Customer customer1 = customerMapper1.findCustomerById(1);
+        System.out.println("用户姓名：" + customer1.getUsername() + "|"
+                + "卡号：" + customer1.getAcno());
+
+        //获取Mapper代理
+        CustomerMapper customerMapper2 = sqlSession.getMapper(CustomerMapper.class);
+        Customer customer2 = customerMapper2.findCustomerById(1);
+        System.out.println("用户姓名：" + customer2.getUsername() + "|"
+                + "卡号：" + customer2.getAcno());
+
+        sqlSession.close();
+    }
+
+    /**
+     * 验证二级缓存清空
+     * @throws Exception
+     */
+    @Test
+    public void testFindCustomerOnMapper3() throws Exception {
+
+        SqlSession sqlSession = dataConnention.getSqlSession();
+
+        //获取Mapper代理
+        CustomerMapper customerMapper1 = sqlSession.getMapper(CustomerMapper.class);
+
+        //执行Mapper代理对象的查询方法
+        Customer customer1 = customerMapper1.findCustomerById(1);
+        System.out.println("用户姓名：" + customer1.getUsername() + "|"
+                + "卡号：" + customer1.getAcno());
+
+        //获取Mapper代理
+        CustomerMapper customerMapper2 = sqlSession.getMapper(CustomerMapper.class);
+
+        String AcNo = "6228286666666";
+        customer1.setAcno(AcNo);
+        //执行Mapper代理对象的修改方法
+        customerMapper2.updateCustomerAcNo(customer1);
+        System.out.println("修改用户姓名：" + customer1.getUsername() + "|"
+                + "的卡号为：" + customer1.getAcno());
+        sqlSession.commit();
+
+        //获取Mapper代理
+        CustomerMapper customerMapper3 = sqlSession.getMapper(CustomerMapper.class);
+        //执行Mapper代理对象的查询方法
+        Customer customer3 = customerMapper3.findCustomerById(1);
+        System.out.println("用户姓名：" + customer3.getUsername() + "|"
+                + "卡号：" + customer3.getAcno());
+
+        sqlSession.close();
+    }
+
+
+
+
 }

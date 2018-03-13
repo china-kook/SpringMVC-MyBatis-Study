@@ -1,6 +1,7 @@
 package com.ikook.mybatis.test;
 
 import com.ikook.mybatis.datasource.DataConnention;
+import com.ikook.mybatis.mapper.CustomerMapper;
 import com.ikook.mybatis.po.Batch;
 import com.ikook.mybatis.po.BatchCustomer;
 import com.ikook.mybatis.po.BatchDetail;
@@ -254,6 +255,23 @@ public class MyBatisTest {
         }
 
         sqlSession.close();
+    }
+
+    @Test
+    public void testFindCustomerOnMapper() throws Exception {
+
+        SqlSession sqlSession = dataConnention.getSqlSession();
+
+        //获取Mapper代理
+        CustomerMapper customerMapper = sqlSession.getMapper(CustomerMapper.class);
+
+        //执行Mapper代理对象的查询方法
+        Customer customer = customerMapper.findCustomerById(1);
+
+        System.out.println("用户姓名："+customer.getUsername()+"|"
+                +"卡号："+customer.getAcno());
+        sqlSession.close();
+
     }
 
 }

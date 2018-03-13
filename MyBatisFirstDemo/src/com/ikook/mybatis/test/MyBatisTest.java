@@ -2,6 +2,7 @@ package com.ikook.mybatis.test;
 
 import com.ikook.mybatis.datasource.DataConnention;
 import com.ikook.mybatis.po.BatchCustomer;
+import com.ikook.mybatis.po.BatchItem;
 import com.ikook.mybatis.po.User;
 import com.ikook.mybatis.po.UserInstance;
 import com.ikook.mybatis.po.UserQueryInfo;
@@ -131,6 +132,26 @@ public class MyBatisTest {
                     + batchCustomer.getUsername() + "的客户:\n于"
                     + batchCustomer.getCreatetime() + "采购了批次号为"
                     + batchCustomer.getNumber() + "的一批理财产品");
+        }
+
+        sqlSession.close();
+    }
+
+    @Test
+    public void testBatchCustomerToMap() throws Exception {
+
+        SqlSession sqlSession = dataConnention.getSqlSession();
+
+        //调用userMapper的方法
+        List<BatchItem> bcList = sqlSession.selectList("test.findBatchCustomerToMap");
+
+
+        for (BatchItem batchItem : bcList) {
+
+            System.out.println("卡号为" + batchItem.getCustomer().getAcno() + "的名为"  // 取出该批次的用户的卡号
+                    + batchItem.getCustomer().getUsername() + "的客户:\n于"   // 取出该批次的用户的用户名
+                    + batchItem.getCreatetime() + "采购了批次号为"
+                    + batchItem.getNumber() + "的一批理财产品");
         }
 
         sqlSession.close();

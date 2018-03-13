@@ -50,4 +50,33 @@
         WHERE BATCH.cus_id = CUSTOMER.cus_id
     </select>
 
+    <resultMap type="com.ikook.mybatis.po.BatchItem" id="BatchInfoMap">
+
+        <id column="batch_id" property="batch_id"/>
+        <result column="cus_id" property="cus_id"/>
+        <result column="number" property="number"/>
+        <result column="createtime" property="createtime" javaType="java.sql.Date"/>
+        <result column="note" property="note"/>
+
+        <association property="customer" javaType="com.ikook.mybatis.po.Customer">
+            <id column="cus_id" property="cus_id"/>
+            <result column="username" property="username"/>
+            <result column="acno" property="acno"/>
+            <result column="gender" property="gender"/>
+            <result column="phone" property="phone"/>
+        </association>
+    </resultMap>
+
+    <select id="findBatchCustomerToMap" resultMap="BatchInfoMap">
+        SELECT
+        BATCH.*,
+        CUSTOMER.username,
+        CUSTOMER.acno
+        FROM
+        BATCH,
+        CUSTOMER
+        WHERE BATCH.cus_id = CUSTOMER.cus_id
+    </select>
+
+
 </mapper>

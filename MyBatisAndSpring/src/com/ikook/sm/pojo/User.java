@@ -1,39 +1,29 @@
 package com.ikook.sm.pojo;
 
-import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
-public class User implements Serializable {
+public class User {
+    private Integer id;
 
-    private int id;
     private String username;
+
     private String password;
+
     private String gender;
+
     private String email;
+
     private String province;
+
     private String city;
+
     private Date birthday;
 
-    public User() {
-    }
-
-    public User(int id, String username, String password, String gender,
-                String email, String province, String city, Date birthday) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.gender = gender;
-        this.email = email;
-        this.province = province;
-        this.city = city;
-        this.birthday = birthday;
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -42,7 +32,7 @@ public class User implements Serializable {
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.username = username == null ? null : username.trim();
     }
 
     public String getPassword() {
@@ -50,7 +40,7 @@ public class User implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password == null ? null : password.trim();
     }
 
     public String getGender() {
@@ -58,7 +48,7 @@ public class User implements Serializable {
     }
 
     public void setGender(String gender) {
-        this.gender = gender;
+        this.gender = gender == null ? null : gender.trim();
     }
 
     public String getEmail() {
@@ -66,7 +56,7 @@ public class User implements Serializable {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = email == null ? null : email.trim();
     }
 
     public String getProvince() {
@@ -74,7 +64,7 @@ public class User implements Serializable {
     }
 
     public void setProvince(String province) {
-        this.province = province;
+        this.province = province == null ? null : province.trim();
     }
 
     public String getCity() {
@@ -82,7 +72,7 @@ public class User implements Serializable {
     }
 
     public void setCity(String city) {
-        this.city = city;
+        this.city = city == null ? null : city.trim();
     }
 
     public Date getBirthday() {

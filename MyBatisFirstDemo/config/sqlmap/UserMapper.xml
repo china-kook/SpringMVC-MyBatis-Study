@@ -78,5 +78,29 @@
         WHERE BATCH.cus_id = CUSTOMER.cus_id
     </select>
 
+    <resultMap type="com.ikook.mybatis.po.BatchItem" id="BatchAndBatchDetailResultMap"
+               extends="BatchInfoMap">
+        <collection property="batchDetails" ofType="com.ikook.mybatis.po.BatchDetail">
+            <!-- id:订单明细的唯一标识 -->
+            <id column="id" property="id"/>
+            <result column="batch_id" property="batch_id"/>
+            <result column="product_id" property="product_id"/>
+            <result column="product_num" property="product_num"/>
+        </collection>
+    </resultMap>
+
+    <select id="findBatchAndBatchDetail" resultMap="BatchAndBatchDetailResultMap">
+        SELECT
+        BATCH.*,
+        CUSTOMER.username,
+        CUSTOMER.acno,
+        BATCHDETAIL.product_id,
+        BATCHDETAIL.product_num
+        FROM
+        BATCH,
+        CUSTOMER,
+        BATCHDETAIL
+        WHERE BATCH.cus_id = CUSTOMER.cus_id AND BATCHDETAIL.batch_id=BATCH.batch_id
+    </select>
 
 </mapper>

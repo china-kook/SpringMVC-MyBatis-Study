@@ -2,6 +2,7 @@ package com.ikook.mybatis.test;
 
 import com.ikook.mybatis.datasource.DataConnention;
 import com.ikook.mybatis.po.BatchCustomer;
+import com.ikook.mybatis.po.BatchDetail;
 import com.ikook.mybatis.po.BatchItem;
 import com.ikook.mybatis.po.User;
 import com.ikook.mybatis.po.UserInstance;
@@ -154,6 +155,35 @@ public class MyBatisTest {
                     + batchItem.getNumber() + "的一批理财产品");
         }
 
+        sqlSession.close();
+    }
+
+    @Test
+    public void testFindBatchAndBatchDetail() throws Exception {
+
+        SqlSession sqlSession = dataConnention.getSqlSession();
+
+        //调用 userMapper 的方法
+        List<BatchItem> batchItemList = sqlSession.selectList("test.findBatchAndBatchDetail");
+
+        for (BatchItem batchItem : batchItemList) {
+
+            //取出该批次订购的理财产品信息
+            List<BatchDetail> batchDetails = batchItem.getBatchDetails();
+
+            System.out.println("卡号为 " + batchItem.getCustomer().getAcno() + " 的名为 "
+                    + batchItem.getCustomer().getUsername() + " 的客户:\n于 "
+                    + batchItem.getCreatetime() + " 采购了批次号为 "
+                    + batchItem.getNumber() + " 的一批理财产品，详情如下：");
+
+            for (BatchDetail batchDetail : batchDetails) {
+
+                System.out.println("id为 " + batchDetail.getProduct_id()
+                        + " 的理财产品 " + batchDetail.getProduct_num() + " 份");
+
+            }
+
+        }
         sqlSession.close();
     }
 

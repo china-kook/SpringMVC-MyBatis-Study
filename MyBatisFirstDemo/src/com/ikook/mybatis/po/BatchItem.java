@@ -1,6 +1,7 @@
 package com.ikook.mybatis.po;
 
 import java.sql.Date;
+import java.util.List;
 
 public class BatchItem {
 
@@ -10,6 +11,7 @@ public class BatchItem {
     private Date createtime;
     private String note;
     private Customer customer;
+    private List<BatchDetail> batchDetails; // 批次包含的理财产品订购信息
 
     public int getBatch_id() {
         return batch_id;
@@ -58,4 +60,13 @@ public class BatchItem {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
+
+    public List<BatchDetail> getBatchDetails() {
+        return batchDetails;
+    }
+
+    public void setBatchDetails(List<BatchDetail> batchDetails) {
+        this.batchDetails = batchDetails;
+    }
+
 }

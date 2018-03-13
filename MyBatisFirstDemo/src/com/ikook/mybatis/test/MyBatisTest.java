@@ -1,9 +1,12 @@
 package com.ikook.mybatis.test;
 
 import com.ikook.mybatis.datasource.DataConnention;
+import com.ikook.mybatis.po.Batch;
 import com.ikook.mybatis.po.BatchCustomer;
 import com.ikook.mybatis.po.BatchDetail;
 import com.ikook.mybatis.po.BatchItem;
+import com.ikook.mybatis.po.Customer;
+import com.ikook.mybatis.po.FinacialProduct;
 import com.ikook.mybatis.po.User;
 import com.ikook.mybatis.po.UserInstance;
 import com.ikook.mybatis.po.UserQueryInfo;
@@ -184,6 +187,53 @@ public class MyBatisTest {
             }
 
         }
+        sqlSession.close();
+    }
+
+
+    @Test
+    public void testfindCustomerAndProducts() throws Exception {
+
+        SqlSession sqlSession = dataConnention.getSqlSession();
+
+        //调用userMapper的方法，获取所有用户信息(以及从属批次信息)
+        List<Customer> customerList = sqlSession.selectList("findUserAndProducts");
+
+        for (Customer customer : customerList) {
+
+            //1.获取用户基本信息
+            System.out.println("卡号为 " + customer.getAcno() + " 的名为 "
+                    + customer.getUsername() + " 的客户:");
+
+            //2.获取用户下的所有批次订单信息
+            List<Batch> batchList = customer.getBatchList();
+            for (Batch batch : batchList) {
+                System.out.println("于 "
+                        + batch.getCreatetime() + " 采购了批次号为 "
+                        + batch.getNumber() + " 的一批理财产品，详情如下：");
+
+                //3.获取一个批次的明细
+                List<BatchDetail> batchDetails = batch.getBatchDetials();
+
+                FinacialProduct finacialProduct;
+
+                for (BatchDetail batchDetail : batchDetails) {
+
+                    System.out.println("id为 " + batchDetail.getProduct_id()
+                            + " 的理财产品 " + batchDetail.getProduct_num() + " 份。");
+
+                    //4.获取每个批次明细中的理财产品详细信息
+                    finacialProduct = batchDetail.getFinacialProduct();
+                    System.out.println("该理财产品的详细信息为：\n"
+                            + "产品名称: " + finacialProduct.getName()
+                            + "|产品价格: " + finacialProduct.getPrice()
+                            + "|产品简介: " + finacialProduct.getDetail());
+                }
+            }
+            System.out.println("**************************************");
+        }
+
+
         sqlSession.close();
     }
 

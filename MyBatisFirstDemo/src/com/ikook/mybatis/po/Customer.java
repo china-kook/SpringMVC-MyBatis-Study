@@ -1,5 +1,7 @@
 package com.ikook.mybatis.po;
 
+import java.util.List;
+
 public class Customer {
 
     private int cus_id;
@@ -7,6 +9,15 @@ public class Customer {
     private String acno;
     private String gender;
     private String phone;
+    private List<Batch> batchList;
+
+    public List<Batch> getBatchList() {
+        return batchList;
+    }
+
+    public void setBatchList(List<Batch> batchList) {
+        this.batchList = batchList;
+    }
 
     public int getCus_id() {
         return cus_id;

@@ -6,6 +6,7 @@ public class BatchDetail {
     private int batch_id;
     private int product_id;
     private int product_num;
+    private FinacialProduct finacialProduct;
 
     public int getId() {
         return id;
@@ -37,5 +38,13 @@ public class BatchDetail {
 
     public void setProduct_num(int product_num) {
         this.product_num = product_num;
+    }
+
+    public FinacialProduct getFinacialProduct() {
+        return finacialProduct;
+    }
+
+    public void setFinacialProduct(FinacialProduct finacialProduct) {
+        this.finacialProduct = finacialProduct;
     }
 }

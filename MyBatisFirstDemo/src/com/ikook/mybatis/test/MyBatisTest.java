@@ -268,10 +268,52 @@ public class MyBatisTest {
         //执行Mapper代理对象的查询方法
         Customer customer = customerMapper.findCustomerById(1);
 
-        System.out.println("用户姓名："+customer.getUsername()+"|"
-                +"卡号："+customer.getAcno());
+        System.out.println("用户姓名：" + customer.getUsername() + "|"
+                + "卡号：" + customer.getAcno());
         sqlSession.close();
 
+    }
+
+    @Test
+    public void testFindCustomerCache1() throws Exception {
+
+        SqlSession sqlSession = dataConnention.getSqlSession();
+
+        CustomerMapper customerMapper = sqlSession.getMapper(CustomerMapper.class);
+
+        //调用 userMapper 的方法
+        Customer customer1 = customerMapper.findCustomerById(1);
+        System.out.println("用户姓名：" + customer1.getUsername());
+
+        Customer customer2 = customerMapper.findCustomerById(1);
+        System.out.println("用户姓名：" + customer2.getUsername());
+        sqlSession.close();
+    }
+
+    @Test
+    public void testFindCustomerCache2() throws Exception {
+
+        SqlSession sqlSession = dataConnention.getSqlSession();
+
+        CustomerMapper customerMapper = sqlSession.getMapper(CustomerMapper.class);
+
+        //调用userMapper的方法
+        Customer customer1 = customerMapper.findCustomerById(1);
+        System.out.println("用户姓名：" + customer1.getUsername() + "|"
+                + "卡号：" + customer1.getAcno());
+
+        String AcNo = "6228289999999";
+        customer1.setAcno(AcNo);
+        System.out.println("修改用户卡号为：" + AcNo);
+
+        customerMapper.updateCustomerAcNo(customer1);
+        sqlSession.commit();
+
+        Customer customer2 = customerMapper.findCustomerById(1);
+        System.out.println("用户姓名：" + customer2.getUsername() + "|"
+                + "卡号：" + customer2.getAcno());
+
+        sqlSession.close();
     }
 
 }

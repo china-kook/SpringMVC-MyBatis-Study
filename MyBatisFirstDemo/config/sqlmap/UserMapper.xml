@@ -39,4 +39,15 @@
         select * from user where user.gender=#{userInstance.gender} and user.username like '%${userInstance.username}%'
     </select>
 
+    <select id="findBatchCustomer" resultType="com.ikook.mybatis.po.BatchCustomer">
+        SELECT
+        BATCH.*,
+        CUSTOMER.username,
+        CUSTOMER.acno
+        FROM
+        BATCH,
+        CUSTOMER
+        WHERE BATCH.cus_id = CUSTOMER.cus_id
+    </select>
+
 </mapper>

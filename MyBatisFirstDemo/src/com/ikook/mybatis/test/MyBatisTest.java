@@ -237,4 +237,23 @@ public class MyBatisTest {
         sqlSession.close();
     }
 
+    @Test
+    public void testFindBatchCustomerLazyLoading() throws Exception {
+
+        SqlSession sqlSession = dataConnention.getSqlSession();
+
+        //调用 userMapper 的方法，获取所有订单信息(未加载关联的用户信息)
+        List<BatchItem> batchItemList = sqlSession.selectList("findBatchUserLazyLoading");
+
+        for (BatchItem batchItem : batchItemList) {
+
+            System.out.println("订单编号：" + batchItem.getNumber());
+
+            //执行 getCustomer 时才会去查询用户信息，这里实现了延迟加载
+            System.out.println("订购用户姓名:" + batchItem.getCustomer().getUsername());
+        }
+
+        sqlSession.close();
+    }
+
 }

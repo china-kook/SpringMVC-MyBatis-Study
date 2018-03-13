@@ -8,6 +8,7 @@
     <!-- 开启本 Mapper 的 namespace 下的二级缓存 -->
     <cache/>
 
+
     <!-- 查询用户 -->
     <select id="findCustomerById" parameterType="int" resultType="com.ikook.mybatis.po.Customer">
         SELECT * FROM CUSTOMER WHERE cus_id=#{cus_id}

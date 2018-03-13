@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Customer implements Serializable {
 
+
     private int cus_id;
     private String username;
     private String acno;

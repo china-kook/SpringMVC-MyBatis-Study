@@ -318,6 +318,7 @@ public class MyBatisTest {
 
     /**
      * 验证二级缓存的存在
+     *
      * @throws Exception
      */
     @Test
@@ -344,6 +345,7 @@ public class MyBatisTest {
 
     /**
      * 验证二级缓存清空
+     *
      * @throws Exception
      */
     @Test

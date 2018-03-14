@@ -43,6 +43,7 @@
     <!--<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>-->
 
     <!-- 使用 HTTPRequestHandlerAdapter 学习非注解的处理器适配器的使用 -->
+    <!-- 这种处理器适配器可以获取 request 的相关 http 请求信息以及设置返回对象 response 的一些参数（例如响应数据的格式）-->
     <!--处理器适配器-->
     <bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/>
 

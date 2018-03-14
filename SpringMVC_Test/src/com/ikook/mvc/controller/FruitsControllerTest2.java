@@ -1,5 +1,6 @@
 package com.ikook.mvc.controller;
 
+import com.google.gson.Gson;
 import com.ikook.mvc.model.Fruits;
 
 import org.springframework.web.HttpRequestHandler;
@@ -21,12 +22,21 @@ public class FruitsControllerTest2 implements HttpRequestHandler {
         // 模拟Service获取水果商品列表
         List<Fruits> fruitsList = fruitsService.queryFruitsList();
 
-        // 设置模型数据
-        httpServletRequest.setAttribute("fruitsList", fruitsList);
+        // 将 fruitsList 转换为 json 串
+        Gson gson = new Gson();
+        String jsonInfo = gson.toJson(fruitsList);
 
+        // 设置返回格式
+        httpServletResponse.setCharacterEncoding("utf-8");
+        httpServletResponse.setContentType("application/json;charset=utf-8");
+
+        //写出json串
+        httpServletResponse.getWriter().write(jsonInfo);
+
+        // 设置模型数据
+        // httpServletRequest.setAttribute("fruitsList", fruitsList);
         // 设置转发视图
-        httpServletRequest.getRequestDispatcher("/WEB-INF/jsp/fruits/fruitsList.jsp")
-                .forward(httpServletRequest, httpServletResponse);
+        // httpServletRequest.getRequestDispatcher("/WEB-INF/jsp/fruits/fruitsList.jsp").forward(httpServletRequest, httpServletResponse);
 
     }
 }

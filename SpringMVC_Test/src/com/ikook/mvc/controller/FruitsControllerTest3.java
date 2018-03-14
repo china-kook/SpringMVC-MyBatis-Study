@@ -30,7 +30,7 @@ public class FruitsControllerTest3 {
         modelAndView.addObject("fruitsList", fruitsList);
 
         // 指定视图
-        modelAndView.setViewName("/WEB-INF/jsp/fruits/fruitsList.jsp");
+        modelAndView.setViewName("/fruits/fruitsList");
 
         return modelAndView;
     }

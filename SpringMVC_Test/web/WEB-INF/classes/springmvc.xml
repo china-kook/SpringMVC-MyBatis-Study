@@ -32,13 +32,20 @@
             <props>
                 <prop key="/queryFruits_test1.action">fruitsController</prop>
                 <prop key="/queryFruits_test2.action">fruitsController</prop>
+                <prop key="/queryFruits_test3.action">fruitsController2</prop>
             </props>
         </property>
     </bean>
     <!-- Handler 处理器 -->
     <bean id="fruitsController" class="com.ikook.mvc.controller.FruitsControllerTest"/>
+    <bean id="fruitsController2" class="com.ikook.mvc.controller.FruitsControllerTest2"/>
     <!-- 处理器适配器 -->
-    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
+    <!--<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>-->
+
+    <!-- 使用 HTTPRequestHandlerAdapter 学习非注解的处理器适配器的使用 -->
+    <!--处理器适配器-->
+    <bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/>
+
     <!-- 视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"/>
 

@@ -50,7 +50,7 @@ class FruitsService {
 
         Fruits banana = new Fruits();
         banana.setName("香蕉");
-        banana.setPrice(1.8);
+        banana.setPrice(9.9);
         banana.setProducing_area("上海");
 
         fruitsList.add(apple);

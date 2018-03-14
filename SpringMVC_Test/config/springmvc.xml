@@ -51,9 +51,9 @@
 
     <!--第一种配置注解处理器映射器和适配器的方式-->
     <!-- 注解的处理器映射器 -->
-    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>-->
     <!-- 注解的处理器适配器-->
-    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>-->
 
     <!-- 第二种配置注解处理器映射器和适配器的方式 -->
     <mvc:annotation-driven/>

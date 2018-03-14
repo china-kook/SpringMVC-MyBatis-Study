@@ -19,6 +19,9 @@
     <!-- 处理器映射器 -->
     <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
 
+    <!-- handler 处理器 -->
+    <bean name="/queryFruits_test.action" class="com.ikook.mvc.controller.FruitsControllerTest"/>
+
     <!-- 处理器适配器 -->
     <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
 

@@ -1,5 +1,7 @@
 package com.ikook.mvc.controller;
 
+import com.ikook.mvc.service.FruitsService;
+import com.ikook.mvc.service.FruitsServiceImpl;
 import com.ikook.mvc.model.Fruits;
 
 import org.springframework.stereotype.Controller;
@@ -13,7 +15,7 @@ import java.util.List;
 @Controller
 public class FruitsControllerTest3 {
 
-    private FruitsService fruitsService = new FruitsService();
+    private FruitsService fruitsService = new FruitsServiceImpl();
 
     // 商品查询列表
     // @RequestMapping 实现 对 queryFruitsList 方法和 url 进行映射，一个方法对应一个 url

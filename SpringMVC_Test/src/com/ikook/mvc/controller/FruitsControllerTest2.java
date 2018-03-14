@@ -1,6 +1,8 @@
 package com.ikook.mvc.controller;
 
 import com.google.gson.Gson;
+import com.ikook.mvc.service.FruitsService;
+import com.ikook.mvc.service.FruitsServiceImpl;
 import com.ikook.mvc.model.Fruits;
 
 import org.springframework.web.HttpRequestHandler;
@@ -14,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class FruitsControllerTest2 implements HttpRequestHandler {
 
-    private FruitsService fruitsService = new FruitsService();
+    private FruitsService fruitsService = new FruitsServiceImpl();
 
     @Override
     public void handleRequest(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {

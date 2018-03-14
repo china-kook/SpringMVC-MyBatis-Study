@@ -1,11 +1,12 @@
 package com.ikook.mvc.controller;
 
+import com.ikook.mvc.service.FruitsService;
+import com.ikook.mvc.service.FruitsServiceImpl;
 import com.ikook.mvc.model.Fruits;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class FruitsControllerTest implements Controller {
 
-    private FruitsService fruitsService = new FruitsService();
+    private FruitsService fruitsService = new FruitsServiceImpl();
 
     @Override
     public ModelAndView handleRequest(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
@@ -37,26 +38,26 @@ public class FruitsControllerTest implements Controller {
 
 // 模拟 Service 的内部类
 
-class FruitsService {
-
-    public List<Fruits> queryFruitsList() {
-
-        List<Fruits> fruitsList = new ArrayList<>();
-
-        Fruits apple = new Fruits();
-        apple.setName("红富士苹果");
-        apple.setPrice(2.3);
-        apple.setProducing_area("山东");
-
-        Fruits banana = new Fruits();
-        banana.setName("香蕉");
-        banana.setPrice(9.9);
-        banana.setProducing_area("上海");
-
-        fruitsList.add(apple);
-        fruitsList.add(banana);
-
-        return fruitsList;
-    }
-
-}
+//class FruitsService {
+//
+//    public List<Fruits> queryFruitsList() {
+//
+//        List<Fruits> fruitsList = new ArrayList<>();
+//
+//        Fruits apple = new Fruits();
+//        apple.setName("红富士苹果");
+//        apple.setPrice(2.3);
+//        apple.setProducing_area("山东");
+//
+//        Fruits banana = new Fruits();
+//        banana.setName("香蕉");
+//        banana.setPrice(9.9);
+//        banana.setProducing_area("上海");
+//
+//        fruitsList.add(apple);
+//        fruitsList.add(banana);
+//
+//        return fruitsList;
+//    }
+//
+//}

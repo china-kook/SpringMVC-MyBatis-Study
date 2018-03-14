@@ -27,6 +27,7 @@
     <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"/>-->
 
     <!-- 使用 SimpleUrlHandlerMapping 示范非注解的处理器映射器的使用和处理方式 -->
+    <!--
     <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="mappings">
             <props>
@@ -35,17 +36,34 @@
                 <prop key="/queryFruits_test3.action">fruitsController2</prop>
             </props>
         </property>
-    </bean>
+    </bean>-->
     <!-- Handler 处理器 -->
+    <!--
     <bean id="fruitsController" class="com.ikook.mvc.controller.FruitsControllerTest"/>
-    <bean id="fruitsController2" class="com.ikook.mvc.controller.FruitsControllerTest2"/>
+    <bean id="fruitsController2" class="com.ikook.mvc.controller.FruitsControllerTest2"/>-->
     <!-- 处理器适配器 -->
     <!--<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>-->
 
     <!-- 使用 HTTPRequestHandlerAdapter 学习非注解的处理器适配器的使用 -->
     <!-- 这种处理器适配器可以获取 request 的相关 http 请求信息以及设置返回对象 response 的一些参数（例如响应数据的格式）-->
     <!--处理器适配器-->
-    <bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/>
+    <!--<bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/>-->
+
+    <!--第一种配置注解处理器映射器和适配器的方式-->
+    <!-- 注解的处理器映射器 -->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+    <!-- 注解的处理器适配器-->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
+
+    <!-- 第二种配置注解处理器映射器和适配器的方式 -->
+    <mvc:annotation-driven/>
+
+    <!-- Handler 处理器的配置方式 -->
+    <!-- 第一种：声明相关的 bean 信息 -->
+    <!--<bean class="com.ikook.mvc.controller.FruitsControllerTest3"/>-->
+
+    <!-- 第二种：使用扫描配置，对某个包下的所有类进行扫描，找出所有使用 @Controller 注解的 Handler 控制器类-->
+    <context:component-scan base-package="com.ikook.mvc.controller"/>
 
     <!-- 视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"/>

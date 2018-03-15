@@ -18,7 +18,7 @@
 
 
     <!--配置注解处理器映射器和适配器的方式。validator：校验器; conversion-service: 类型转换-->
-    <mvc:annotation-driven conversion-service="conversionService" validator="validator"/>
+    <mvc:annotation-driven validator="validator"/>
 
     <!-- 校验器 -->
     <bean id="validator"
@@ -44,9 +44,9 @@
         <!-- 对资源文件内容缓存时间，单位秒 -->
         <property name="cacheSeconds" value="120"/>
     </bean>
-    <!-- 来做类型转换 -->
-    <bean id="conversionService"
-          class="org.springframework.format.support.FormattingConversionServiceFactoryBean"/>
+    <!--&lt;!&ndash; 来做类型转换 &ndash;&gt;-->
+    <!--<bean id="conversionService"-->
+          <!--class="org.springframework.format.support.FormattingConversionServiceFactoryBean"/>-->
 
     <!-- 全局异常处理器 -->
     <bean class="com.ikook.mvc.exception.UserExceptionResolver"/>

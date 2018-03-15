@@ -5,6 +5,7 @@ import com.ikook.mvc.model.ListQryModel;
 import com.ikook.mvc.model.MapQryModel;
 import com.ikook.mvc.service.FruitsService;
 import com.ikook.mvc.service.FruitsServiceImpl;
+import com.ikook.mvc.validator.group.FruitsGroup1;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +24,7 @@ public class FindControllerTest {
     private FruitsService fruitsService = new FruitsServiceImpl();
 
     @RequestMapping(value = "/queryFruitsByCondition")
-    public String queryFruitsByCondition(Model model, @Validated Fruits fruits, BindingResult bindingResult) {
+    public String queryFruitsByCondition(Model model, @Validated(value = FruitsGroup1.class) Fruits fruits, BindingResult bindingResult) {
 
         List<ObjectError> allErrors = null;
         if (bindingResult.hasErrors()){

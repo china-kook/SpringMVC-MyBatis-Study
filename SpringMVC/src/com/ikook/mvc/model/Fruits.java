@@ -1,5 +1,8 @@
 package com.ikook.mvc.model;
 
+import com.ikook.mvc.validator.group.FruitsGroup1;
+import com.ikook.mvc.validator.group.FruitsGroup2;
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Size;
@@ -7,10 +10,10 @@ import javax.validation.constraints.Size;
 public class Fruits {
 
     private int id;
-    @Size(min = 1,max = 20,message = "{fruits.name.length.error}")
+    @Size(min = 1,max = 20,message = "{fruits.name.length.error}", groups = {FruitsGroup1.class})
     private String name;
     private double price;
-    @NotEmpty(message = "{fruits.producing_area.isEmpty}")
+    @NotEmpty(message = "{fruits.producing_area.isEmpty}", groups = {FruitsGroup2.class})
     private String producing_area;
 
     public int getId() {

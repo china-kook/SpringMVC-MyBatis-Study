@@ -48,6 +48,8 @@
     <bean id="conversionService"
           class="org.springframework.format.support.FormattingConversionServiceFactoryBean"/>
 
+    <!-- 全局异常处理器 -->
+    <bean class="com.ikook.mvc.exception.UserExceptionResolver"/>
 
     <!-- 使用扫描配置，对某个包下的所有类进行扫描，找出所有使用 @Controller 注解的 Handler 控制器类-->
     <context:component-scan base-package="com.ikook.mvc.controller"/>

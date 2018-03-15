@@ -1,5 +1,6 @@
 package com.ikook.mvc.controller;
 
+import com.ikook.mvc.exception.UserException;
 import com.ikook.mvc.model.User;
 import com.ikook.mvc.validator.UserValidator;
 
@@ -32,7 +33,14 @@ public class UserControllerTest {
     }
 
     @RequestMapping(value = "/login")
-    public String login(Model model, HttpServletRequest request, @Valid User user, BindingResult result) {
+    public String login(Model model, HttpServletRequest request, @Valid User user, BindingResult result) throws UserException{
+
+        // 查询用户是否为黑名单用户
+        boolean isBlackUser = checkBlackUser(user);
+        // 如果是黑名单用户，则抛出异常，结束程序
+        if (isBlackUser) {
+            throw new UserException("user.not.have.power");
+        }
 
         // 登录检测
         List<ObjectError> allErrors = null;
@@ -59,6 +67,16 @@ public class UserControllerTest {
 
         return "/user/loginSuccess";
 
+    }
+
+    private boolean checkBlackUser(User user) {
+        String blackArray[] = {"jack", "tom", "jean"};
+        for (int i = 0; i < blackArray.length; i++) {
+            if (user.getUsername().equals(blackArray[i])) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean checkUser(User user) {

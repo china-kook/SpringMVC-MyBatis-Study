@@ -20,6 +20,9 @@
     <!--配置注解处理器映射器和适配器的方式。validator：校验器; conversion-service: 类型转换-->
     <mvc:annotation-driven validator="validator"/>
 
+    <!-- 默认的 Servlet 处理器：用来保证静态资源的正常获取 -->
+    <mvc:default-servlet-handler/>
+
     <!-- 校验器 -->
     <bean id="validator"
           class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">

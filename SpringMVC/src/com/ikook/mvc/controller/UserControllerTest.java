@@ -12,6 +12,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -67,6 +68,18 @@ public class UserControllerTest {
 
         return "/user/loginSuccess";
 
+    }
+
+    @RequestMapping(value = "/loginout")
+    public String loginout(Model model, HttpServletRequest request) throws UserException, IOException {
+        if (request.getSession().getAttribute("user") != null) {
+            // 将用户信息从 session 中删除
+            request.getSession().removeAttribute("user");
+        } else {
+            model.addAttribute("errorMsg","注销失败！用户已注销");
+        }
+
+        return "/user/login";
     }
 
     private boolean checkBlackUser(User user) {

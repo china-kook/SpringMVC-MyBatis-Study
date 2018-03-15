@@ -63,14 +63,18 @@
     <!-- 拦截器 -->
     <mvc:interceptors>
         <!-- 多个拦截器，顺序执行 -->
+        <!--<mvc:interceptor>-->
+            <!--&lt;!&ndash; /** 表示所有 url 包括子 url 路径&ndash;&gt;-->
+            <!--<mvc:mapping path="/**"/>-->
+            <!--<bean class="com.ikook.mvc.interceptor.HandlerInterceptorDemo1"/>-->
+        <!--</mvc:interceptor>-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/**"/>-->
+            <!--<bean class="com.ikook.mvc.interceptor.HandlerInterceptorDemo2"/>-->
+        <!--</mvc:interceptor>-->
         <mvc:interceptor>
-            <!-- /** 表示所有 url 包括子 url 路径-->
             <mvc:mapping path="/**"/>
-            <bean class="com.ikook.mvc.interceptor.HandlerInterceptorDemo1"/>
-        </mvc:interceptor>
-        <mvc:interceptor>
-            <mvc:mapping path="/**"/>
-            <bean class="com.ikook.mvc.interceptor.HandlerInterceptorDemo2"/>
+            <bean class="com.ikook.mvc.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 

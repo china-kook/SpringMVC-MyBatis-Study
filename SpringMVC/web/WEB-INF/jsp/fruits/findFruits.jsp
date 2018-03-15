@@ -43,5 +43,7 @@
         </tr>
     </c:forEach>
 </table>
+<a href="${pageContext.request.contextPath}/user/loginout.action">注销</a>
+
 </body>
 </html>

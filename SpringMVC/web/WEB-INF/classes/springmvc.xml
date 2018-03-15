@@ -17,10 +17,39 @@
         http://www.springframework.org/schema/tx/spring-tx-3.2.xsd ">
 
 
-    <!--配置注解处理器映射器和适配器的方式-->
-    <mvc:annotation-driven/>
+    <!--配置注解处理器映射器和适配器的方式。validator：校验器; conversion-service: 类型转换-->
+    <mvc:annotation-driven conversion-service="conversionService" validator="validator"/>
 
-    <!-- 第二种：使用扫描配置，对某个包下的所有类进行扫描，找出所有使用 @Controller 注解的 Handler 控制器类-->
+    <!-- 校验器 -->
+    <bean id="validator"
+          class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <!-- 校验器-->
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+        <!-- 指定校验使用的资源文件，在文件中配置校验的错误信息，如果不指定则默认使用 classpath 下的 ValidationMessages.properties -->
+        <property name="validationMessageSource" ref="messageSource"/>
+    </bean>
+    <!-- 校验错误信息配置文件-->
+    <bean id="messageSource"
+          class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <!-- 资源文件名-->
+        <property name="basenames">
+            <list>
+                <value>classpath:ProductValidationMessages</value>
+            </list>
+        </property>
+        <!-- 解决中文乱码 -->
+        <property name="defaultEncoding" value="utf-8"/>
+        <!-- 资源文件编码格式 -->
+        <property name="fileEncodings" value="utf-8"/>
+        <!-- 对资源文件内容缓存时间，单位秒 -->
+        <property name="cacheSeconds" value="120"/>
+    </bean>
+    <!-- 来做类型转换 -->
+    <bean id="conversionService"
+          class="org.springframework.format.support.FormattingConversionServiceFactoryBean"/>
+
+
+    <!-- 使用扫描配置，对某个包下的所有类进行扫描，找出所有使用 @Controller 注解的 Handler 控制器类-->
     <context:component-scan base-package="com.ikook.mvc.controller"/>
 
     <!-- 视图解析器 -->

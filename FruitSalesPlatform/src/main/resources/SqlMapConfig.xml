@@ -10,7 +10,7 @@
     <!-- 配置别名 -->
     <typeAliases>
         <!-- 批量扫码别名 -->
-        <package name="com.ikook.fruitsalesplatform"/>
+        <package name="com.ikook.fruitsalesplatform.entity"/>
     </typeAliases>
 
     <!-- 配置mapper

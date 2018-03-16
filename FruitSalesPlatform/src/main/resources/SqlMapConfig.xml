@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <!-- 全局 setting 配置，根据需要添加 -->
+
+    <!-- 配置别名 -->
+    <typeAliases>
+        <!-- 批量扫码别名 -->
+        <package name="com.ikook.fruitsalesplatform"/>
+    </typeAliases>
+
+    <!-- 配置mapper
+     由于使用 spring 和 mybatis 的整合包进行 mapper 扫描，这里不需要配置了。
+     但必须遵循:mapper.xml 和 mapper.java 文件同名且在一个目录-->
+    <!-- <mappers></mappers> -->
+</configuration>

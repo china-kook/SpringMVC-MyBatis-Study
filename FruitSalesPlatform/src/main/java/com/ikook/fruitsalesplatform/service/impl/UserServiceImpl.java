@@ -1,7 +1,8 @@
-package com.ikook.fruitsalesplatform.service;
+package com.ikook.fruitsalesplatform.service.impl;
 
 import com.ikook.fruitsalesplatform.dao.UserDao;
 import com.ikook.fruitsalesplatform.entity.User;
+import com.ikook.fruitsalesplatform.service.UserService;
 
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Resource
     private UserDao userDao;

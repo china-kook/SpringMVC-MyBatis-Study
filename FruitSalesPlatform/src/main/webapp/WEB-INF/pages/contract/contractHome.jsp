@@ -30,15 +30,12 @@
     <script type="text/javascript">
 
         function init() {
-
             var countNumber = document.getElementById("countNumber").value;
             var sumPage = document.getElementById("sumPageNumber").value;
             var currentPage = document.getElementById("currentPage").value;
-
             var info = "一共<font color='blue'>" + countNumber + "</font>条数据，" +
                 "共<font color='blue'>" + sumPage + "</font>页，" +
                 "当前第<font color='blue'>" + currentPage + "</font>页";
-
             document.getElementById("pageInfo").innerHTML = info;
         }
 
@@ -100,6 +97,32 @@
                     }
                     document.getElementById("listForm").submit();
                 }
+            }
+        }
+
+        function changeStatus() {
+            var type = $("#indexType").val();
+            $("#type").val(type);
+        }
+
+        function addContract() {
+            var url = "${pageContext.request.contextPath}/contract/toAddPage.action";
+            window.open(url, "创建合同", "height=700,width=700,scrollbars=yes");
+        }
+
+        function getContractDetail(id) {
+            var url = "${pageContext.request.contextPath}/contract/getContractDetail.action?contractId=" + id;
+            window.open(url, "合同详情", "height=700,width=700,scrollbars=yes");
+        }
+
+        function deleteContract(contractId, barcode) {
+            if (window.confirm("你确定要删除编号为" + barcode + "的合同信息吗？")) {
+                $("#dContractId").val(contractId);//向form中引入id
+                //引入分页信息至该form表单
+                $("#dStartPage").val($("#startPage").val());
+                $("#dCurrentPage").val($("#currentPage").val());
+                $("#dPageSize").val($("#pageSize").val());
+                $("#deleteForm").submit();//提交表单
             }
         }
 

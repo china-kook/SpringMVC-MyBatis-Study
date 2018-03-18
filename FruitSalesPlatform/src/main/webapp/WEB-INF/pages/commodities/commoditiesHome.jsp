@@ -180,6 +180,11 @@
             return true;
         }
 
+        function openwin(id) {
+            var url="${pageContext.request.contextPath}/accessory/list.action?fruitId="+id;
+            window.open (url,"附属品","height=400,width=700,scrollbars=yes");
+        }
+
     </script>
 </head>
 <body onload="init()">

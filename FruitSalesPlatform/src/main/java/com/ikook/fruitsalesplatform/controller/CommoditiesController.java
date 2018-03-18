@@ -2,8 +2,11 @@ package com.ikook.fruitsalesplatform.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.ikook.fruitsalesplatform.entity.Commodities;
+import com.ikook.fruitsalesplatform.service.AccessoryService;
 import com.ikook.fruitsalesplatform.service.CommoditiesService;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,6 +28,12 @@ public class CommoditiesController extends BaseController {
 
     @Resource
     private CommoditiesService commoditiesService;
+
+    @Resource
+    private AccessoryService accessoryService;
+
+    //创建该类的日志对象
+    Log log = LogFactory.getLog(this.getClass());
 
     // 跳转至列表页面
     @RequestMapping(value = "/commodities/list.action")
@@ -110,6 +119,11 @@ public class CommoditiesController extends BaseController {
     @RequestMapping("/commodities/delete.action")
     public String delete(Model model, Commodities commodities) {
         commoditiesService.deleteById(commodities.getFruitId());
+
+        //删除货物下对应的所有附属品
+        int result=accessoryService.deleteByFruitId(commodities.getFruitId());
+
+        log.info( "delete fruitId="+commodities.getFruitId()+"'s accessorys number:"+result);
 
         // 构建新的列表查询条件，只需要分页数据即可
         Commodities queryCommodities = new Commodities();

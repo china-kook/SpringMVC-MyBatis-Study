@@ -189,7 +189,6 @@
                 </td>
                 <td>${item.createTime}</td>
                 <td>
-                    <a onclick="editContract('${item.contractId}')">编辑</a>|
                     <a onclick="deleteContract('${item.contractId}','${item.barCode }')">删除</a>
                     <form id="deleteForm" action="delete.action" method="post">
                         <input type="hidden" name="contractId" id="dContractId"/>

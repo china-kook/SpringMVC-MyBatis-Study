@@ -14,7 +14,7 @@ public interface ContractService {
 
     public List<ContractVo> findContractList(Map map);//查询合同列表
 
-    public void insert(Contract contract);//插入合同信息
+    public void insert(Contract contract, String[] commoditiesIdArrays, String[] priceArrays);//插入合同信息
 
     public void insertMiddleTab(MiddleTab middelTab);//插入合同与货物关联信息
 
